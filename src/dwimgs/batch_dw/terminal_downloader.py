@@ -1,19 +1,23 @@
 # Copyright 2021 Abdelrahman Said
 # 
-# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
-# associated documentation files (the "Software"), to deal in the Software without restriction,
-# including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-# and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-# subject to the following conditions:
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files
+# (the "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the
+# following conditions:
 # 
-# The above copyright notice and this permission notice shall be included in all copies or substantial
-# portions of the Software.
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
 # 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-# LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
 
 """This module implements the terminal utility dwimgs, which takes a file
 that contains URLs to image files and a directory and then downloads each
@@ -29,8 +33,7 @@ import json
 import requests
 from datetime import datetime
 from utils import ansi_escape_codes as esc
-from utils import image_downloader as dwimg
-
+from utils import image_downloader as img_dl
 
 # CONSTANTS
 PROGRAM_VERSION_MSG = f'%(prog)s 1.0 \u00a9 {datetime.today().year} by\
@@ -50,8 +53,15 @@ parser.add_argument('-v', '--verbose', action='store_true',
 parser.add_argument('--version', action='version', version=PROGRAM_VERSION_MSG)
 
 
-def main():
-    """Execute the main loop"""
+def download_images():
+    """Runs the command line utility ensuring that all positional arguments
+    are satisified and then it downloads all the images to the specified
+    destination directory.
+
+    Lastly, it creates a JSON file in the specified destination directory
+    showing the images that were downloaded successfully and the ones that
+    failed to download.
+    """
 
     def print_error_message(msg, origin):
         """Prints a formatted error message to stdout
@@ -103,7 +113,7 @@ def main():
                           f'{esc.ITALIC}{url}{esc.RESET}')
 
                 # Attempt downloading the image
-                if dwimg.download_image(url, download_dir):
+                if img_dl.download_image(url, download_dir):
                     success.append(url)
                     print(f'{esc.GREEN}{esc.BOLD}Download successful{esc.RESET}\n')
                 else:
@@ -138,7 +148,3 @@ def main():
                             download_dir)
     except requests.exceptions.MissingSchema:
         print_error_message('ERROR: Invalid URLs provided', urls_file)
-
-
-if __name__ == '__main__':
-    main()
