@@ -79,6 +79,8 @@ def download_image(url, download_dir):
     """
     filename = get_filename(url)
 
+    global unknown_image_counter
+
     # If the get_filename function returned an empty string, then
     # construct a default filename
     if not filename:

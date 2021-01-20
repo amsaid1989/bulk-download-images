@@ -19,33 +19,13 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from setuptools import setup, find_packages
-import pathlib
-from utils import package_info
+"""Module that stores some basic information about the package for easy
+access by other modules.
 
-# Get the source directory of the setup.py file
-source_dir = pathlib.Path(__file__).parent.resolve()
+Module: package_info
+Author: Abdelrahman Said
+"""
 
-# Get the long description from the README.md file
-l_description = pathlib.Path(source_dir / 'README.md'). \
-    read_text(encoding='utf-8')
-
-setup(name=package_info.name,
-      version=package_info.version,
-      description='Command line utility to bulk download images from ' \
-                  'a text file',
-      long_description=l_description,
-      long_description_content_type='text/markdown',
-      author=package_info.author,
-      author_email='said.abdelrahman89@gmail.com',
-      url='https://github.com/amsaid1989/bulk-download-images',
-      package_dir={'': 'src/dwimgs'},
-      packages=find_packages(where='src/dwimgs'),
-      py_modules=['run'],
-      license='MIT',
-      platforms=['OS Independent'],
-      install_requires=['requests'],
-      entry_points={
-          'console_scripts': ['dwimgs=run:main']
-      },
-      )
+name = 'dwimgs'
+version = '1.0'
+author = 'Abdelrahman Said'

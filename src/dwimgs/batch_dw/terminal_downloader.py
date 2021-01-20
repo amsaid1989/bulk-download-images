@@ -34,20 +34,21 @@ import requests
 from datetime import datetime
 from utils import ansi_escape_codes as esc
 from utils import image_downloader as img_dl
+from utils import package_info
 
 # CONSTANTS
-PROGRAM_VERSION_MSG = f'%(prog)s 1.0 \u00a9 {datetime.today().year} by\
-                        Abdelrahman Said'
+PROGRAM_VERSION_MSG = f'%(prog)s {package_info.version} \u00a9 ' \
+                      f'{datetime.today().year} by {package_info.author}'
 
 # Create the parser
-parser = argparse.ArgumentParser(prog='dwimgs')
+parser = argparse.ArgumentParser(prog=package_info.name)
 
 # Add all the arguments
 parser.add_argument('urls_file',
                     help='A text file that has image URLs on separate lines')
 parser.add_argument('dest_dir',
-                    help="The destination directory where the images will be saved.\
-                          The directory will be created if it doesn't exist.")
+                    help="The destination directory where the images will be saved. "\
+                         "The directory will be created if it doesn't exist.")
 parser.add_argument('-v', '--verbose', action='store_true',
                     help='increase the verbosity of the terminal output')
 parser.add_argument('--version', action='version', version=PROGRAM_VERSION_MSG)
