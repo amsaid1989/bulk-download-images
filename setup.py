@@ -21,7 +21,7 @@
 
 from setuptools import setup, find_packages
 import pathlib
-from utils import package_info
+from src.dwimgs.utils import package_info
 
 # Get the source directory of the setup.py file
 source_dir = pathlib.Path(__file__).parent.resolve()
