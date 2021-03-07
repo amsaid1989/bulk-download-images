@@ -24,10 +24,10 @@ import pathlib
 from src.dwimgs.utils import package_info
 
 # Get the source directory of the setup.py file
-source_dir = pathlib.Path(__file__).parent.resolve()
+source_dir: str = pathlib.Path(__file__).parent.resolve()
 
 # Get the long description from the README.md file
-l_description = pathlib.Path(source_dir / 'README.md'). \
+l_description: str = pathlib.Path(source_dir / 'README.md'). \
     read_text(encoding='utf-8')
 
 setup(name=package_info.name,

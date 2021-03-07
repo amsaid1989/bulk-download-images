@@ -26,8 +26,8 @@ Module: ansi_escape_codes
 Author: Abdelrahman Said
 """
 
-BOLD = '\033[1m'
-ITALIC = '\033[3m'
-RED = '\033[31m'
-GREEN = '\033[32m'
-RESET = '\033[0m'
+BOLD: str = '\033[1m'
+ITALIC: str = '\033[3m'
+RED: str = '\033[31m'
+GREEN: str = '\033[32m'
+RESET: str = '\033[0m'

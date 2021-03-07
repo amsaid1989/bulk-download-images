@@ -25,7 +25,7 @@ Module: run
 Author: Abdelrahman Said
 """
 
-def main():
+def main() -> None:
     """The entry point for the dwimgs package"""
     
     from batch_dw import terminal_downloader as tdw

@@ -28,6 +28,7 @@ Author: Abdelrahman Said
 """
 
 import os
+from typing import List, Dict, Union
 import argparse
 import json
 import requests
@@ -37,11 +38,11 @@ from utils import image_downloader as img_dl
 from utils import package_info
 
 # CONSTANTS
-PROGRAM_VERSION_MSG = f'%(prog)s {package_info.version} \u00a9 ' \
-                      f'{datetime.today().year} by {package_info.author}'
+PROGRAM_VERSION_MSG: str = f'%(prog)s {package_info.version} \u00a9 ' \
+                           f'{datetime.today().year} by {package_info.author}'
 
 # Create the parser
-parser = argparse.ArgumentParser(prog=package_info.name)
+parser: argparse.ArgumentParser = argparse.ArgumentParser(prog=package_info.name)
 
 # Add all the arguments
 parser.add_argument('urls_file',
@@ -54,7 +55,7 @@ parser.add_argument('-v', '--verbose', action='store_true',
 parser.add_argument('--version', action='version', version=PROGRAM_VERSION_MSG)
 
 
-def download_images():
+def download_images() -> None:
     """Runs the command line utility ensuring that all positional arguments
     are satisified and then it downloads all the images to the specified
     destination directory.
@@ -64,7 +65,7 @@ def download_images():
     failed to download.
     """
 
-    def print_error_message(msg, origin):
+    def print_error_message(msg: str, origin: str) -> None:
         """Prints a formatted error message to stdout
         
         Arguments:
@@ -82,16 +83,16 @@ def download_images():
     args = parser.parse_args()
 
     # Lists to store the files that succeeded and the files that failed
-    success = []
-    failure = []
+    success: List[str] = []
+    failure: List[str] = []
 
     # Counter for how many URLs were processed
-    url_count = 0
+    url_count: int = 0
 
     try:
         # Get the arguments
-        urls_file = os.path.abspath(args.urls_file)
-        download_dir = os.path.abspath(args.dest_dir)
+        urls_file: str = os.path.abspath(args.urls_file)
+        download_dir: str = os.path.abspath(args.dest_dir)
 
         # Check that the specified directory exists and that it is valid.
         # If it exists but it is not a directory, raise an error.
@@ -125,7 +126,7 @@ def download_images():
                 url_count += 1
 
         # Construct the json dictionary that will be passed to the log file
-        json_object = {
+        json_object: Dict[str, Union[int, List[str]]] = {
             'URLs processed': url_count,
             'Downloads succeeded': len(success),
             'Downloads failed': len(failure),
@@ -133,7 +134,7 @@ def download_images():
             'Successful downloads': success
         }
 
-        log_file = os.path.join(download_dir, 'result.json')
+        log_file: str = os.path.join(download_dir, 'result.json')
 
         # Write the dictionary to the json log file
         with open(log_file, 'w+') as result:

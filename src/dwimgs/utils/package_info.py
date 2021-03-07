@@ -26,6 +26,6 @@ Module: package_info
 Author: Abdelrahman Said
 """
 
-name = 'dwimgs'
-version = '1.0.1'
-author = 'Abdelrahman Said'
+name: str = 'dwimgs'
+version: str = '1.0.2'
+author: str = 'Abdelrahman Said'

@@ -28,16 +28,17 @@ Author: Abdelrahman Said
 """
 
 import os
+from typing import List
 from datetime import datetime
 import requests
 
 
-unknown_image_counter = 1
+unknown_image_counter: int = 1
 
-IMG_FORMATS = ['jpg', 'jpeg', 'png', 'webp']
+IMG_FORMATS: List[str] = ['jpg', 'jpeg', 'png', 'webp']
 
 
-def get_filename(url):
+def get_filename(url: str) -> str:
     """Extracts an image filename from a URL
 
     Arguments:
@@ -49,7 +50,7 @@ def get_filename(url):
             The clean filename or an empty string if it couldn't extract
             a name from the provided URL
     """
-    filename = ''
+    filename: str = ''
 
     # Check to see if one of the valid image extensions exist in the URL.
     # If it does, split the URL at the '/' character and remove any
@@ -63,7 +64,7 @@ def get_filename(url):
     return filename
 
 
-def download_image(url, download_dir):
+def download_image(url: str, download_dir: str) -> bool:
     """Takes a URL and downloads the image to the specified download
     directory.
 
@@ -77,7 +78,7 @@ def download_image(url, download_dir):
     Returns:
         True if it managed to download the image, otherwise False
     """
-    filename = get_filename(url)
+    filename: str = get_filename(url)
 
     global unknown_image_counter
 
@@ -92,7 +93,7 @@ def download_image(url, download_dir):
         unknown_image_counter += 1
     
     # Create the path to the image file
-    filepath = os.path.join(download_dir, filename)
+    filepath: str = os.path.join(download_dir, filename)
 
     # Ensure a unique filepath
     if os.path.exists(filepath):
@@ -106,7 +107,7 @@ def download_image(url, download_dir):
         # Recreate the file name
         filepath = ''.join(path)
 
-    r = requests.get(url)
+    r: requests.Response = requests.get(url)
         
     # Make sure that the request was valid and that the content returned
     # is an image file
