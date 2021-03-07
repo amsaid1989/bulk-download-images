@@ -33,9 +33,9 @@ import argparse
 import json
 import requests
 from datetime import datetime
-from utils import ansi_escape_codes as esc
-from utils import image_downloader as img_dl
-from utils import package_info
+from dwimgs.utils import ansi_escape_codes as esc
+from dwimgs.utils import image_downloader as img_dl
+from dwimgs.utils import package_info
 
 # CONSTANTS
 PROGRAM_VERSION_MSG: str = f'%(prog)s {package_info.version} \u00a9 ' \

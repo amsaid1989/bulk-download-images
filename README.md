@@ -14,7 +14,7 @@ This will install all the required packages and add the `dwimgs` utility to your
 
 If the package was installed successfully, you should get an output that looks like this:
 
-> dwimgs 1.0 © 2021 by Abdelrahman Said
+> dwimgs 1.0.2 © 2021 by Abdelrahman Said
 
 ## **USAGE**
 
@@ -116,5 +116,5 @@ That is it. Now, you shoud be able to run `dwimgs` and modify the code as you li
 
 If everything is working properly, you should get the following output:
 
-> dwimgs 1.0 © 2021 by Abdelrahman Said
+> dwimgs 1.0.2 © 2021 by Abdelrahman Said
 

@@ -39,13 +39,13 @@ setup(name=package_info.name,
       author=package_info.author,
       author_email='said.abdelrahman89@gmail.com',
       url='https://github.com/amsaid1989/bulk-download-images',
-      package_dir={'': 'src/dwimgs'},
-      packages=find_packages(where='src/dwimgs'),
-      py_modules=['run'],
+      package_dir={'': 'src'},
+      packages=find_packages(where='src'),
+      py_modules=['dwimgs.run'],
       license='MIT',
       platforms=['OS Independent'],
       install_requires=['requests'],
       entry_points={
-          'console_scripts': ['dwimgs=run:main']
+          'console_scripts': ['dwimgs=dwimgs.run:main']
       },
       )

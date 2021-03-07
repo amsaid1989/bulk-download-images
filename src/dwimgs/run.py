@@ -28,7 +28,7 @@ Author: Abdelrahman Said
 def main() -> None:
     """The entry point for the dwimgs package"""
     
-    from batch_dw import terminal_downloader as tdw
+    from dwimgs.batch_dw import terminal_downloader as tdw
 
     tdw.download_images()
 
