@@ -4,3 +4,4 @@ dist
 dwimgs.egg-info
 *.pyc
 .vscode
+build_and_publish
